@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "revcyclemgmt-edi-validation-harness"
+version = "0.1.0"
+description = "Synthetic EDI/X12 validation harness for RevCycleMGMT claims, eligibility, remittance, status, acknowledgment, and attachment workflows."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+  { name = "RevCycleMGMT" }
+]
+dependencies = []
+
+[project.scripts]
+revcyclemgmt-edi-validate = "revcyclemgmt_edi_validation.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
