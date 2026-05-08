@@ -1,5 +1,9 @@
+import json
 from pathlib import Path
 
+import pytest
+
+from revcyclemgmt_edi_validation.cli import main
 from revcyclemgmt_edi_validation.validator import validate_x12_file, validate_x12_text
 
 
@@ -50,3 +54,23 @@ def test_empty_input_fails_cleanly():
     assert report.valid is False
     assert report.transaction_type is None
     assert "No X12 segments found." in report.errors
+
+
+def test_folder_summary_reports_validation_mix(capsys):
+    with pytest.raises(SystemExit) as exit_info:
+        main(["validate-folder", str(FIXTURES), "--summary"])
+
+    assert exit_info.value.code == 1
+
+    payload = json.loads(capsys.readouterr().out)
+    fixture_count = len(list(FIXTURES.glob("*.edi")))
+
+    assert payload["valid"] is False
+    assert payload["file_count"] == fixture_count
+    assert payload["valid_count"] == fixture_count - 2
+    assert payload["invalid_count"] == 2
+    assert payload["transaction_counts"]["837P"] >= 2
+    assert any(
+        "invalid_control_numbers.edi" in file_report["path"] and file_report["error_count"] >= 3
+        for file_report in payload["files"]
+    )

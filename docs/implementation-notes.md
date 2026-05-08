@@ -14,6 +14,7 @@ This repository intentionally validates synthetic X12 structure only. It is not 
 - ISA/IEA, GS/GE, and ST/SE control-number matching.
 - SE01 transaction segment count.
 - Basic claim-line presence when `CLM` exists.
+- Folder-level summary reporting for implementation review and demo readiness.
 
 ## Next Technical Upgrades
 
