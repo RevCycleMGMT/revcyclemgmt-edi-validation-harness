@@ -1,0 +1,200 @@
+{
+  "headline": "Synthetic EDI validation proof: ten transaction families checked before a clearinghouse route.",
+  "summary": {
+    "valid": false,
+    "file_count": 12,
+    "valid_count": 10,
+    "invalid_count": 2,
+    "transaction_family_count": 10,
+    "error_count": 5,
+    "transaction_counts": {
+      "270": 1,
+      "271": 1,
+      "275": 1,
+      "276": 1,
+      "277": 1,
+      "277CA": 1,
+      "835": 1,
+      "837I": 1,
+      "837P": 3,
+      "999": 1
+    }
+  },
+  "workflow_steps": [
+    "File intake",
+    "Parse X12",
+    "Detect ST01",
+    "Check envelope",
+    "Check rules",
+    "Control numbers",
+    "Action report"
+  ],
+  "coverage": [
+    {
+      "transaction_type": "837P",
+      "workflow": "Professional claim",
+      "fixture": "valid_837p.edi",
+      "required_segments": [
+        "BHT",
+        "NM1",
+        "CLM",
+        "LX",
+        "SV1"
+      ],
+      "valid": true,
+      "segment_count": 14
+    },
+    {
+      "transaction_type": "837I",
+      "workflow": "Institutional claim",
+      "fixture": "valid_837i.edi",
+      "required_segments": [
+        "BHT",
+        "NM1",
+        "CLM",
+        "LX",
+        "SV2"
+      ],
+      "valid": true,
+      "segment_count": 13
+    },
+    {
+      "transaction_type": "835",
+      "workflow": "Electronic remittance",
+      "fixture": "valid_835.edi",
+      "required_segments": [
+        "BPR",
+        "TRN",
+        "CLP"
+      ],
+      "valid": true,
+      "segment_count": 12
+    },
+    {
+      "transaction_type": "999",
+      "workflow": "Implementation ACK",
+      "fixture": "valid_999.edi",
+      "required_segments": [
+        "AK1",
+        "AK2",
+        "IK5",
+        "AK9"
+      ],
+      "valid": true,
+      "segment_count": 10
+    },
+    {
+      "transaction_type": "277CA",
+      "workflow": "Claim acknowledgment",
+      "fixture": "valid_277ca.edi",
+      "required_segments": [
+        "BHT",
+        "HL",
+        "TRN",
+        "STC"
+      ],
+      "valid": true,
+      "segment_count": 10
+    },
+    {
+      "transaction_type": "270",
+      "workflow": "Eligibility request",
+      "fixture": "valid_270.edi",
+      "required_segments": [
+        "BHT",
+        "HL",
+        "NM1",
+        "EQ"
+      ],
+      "valid": true,
+      "segment_count": 10
+    },
+    {
+      "transaction_type": "271",
+      "workflow": "Eligibility response",
+      "fixture": "valid_271.edi",
+      "required_segments": [
+        "BHT",
+        "HL",
+        "NM1",
+        "EB"
+      ],
+      "valid": true,
+      "segment_count": 10
+    },
+    {
+      "transaction_type": "276",
+      "workflow": "Claim-status request",
+      "fixture": "valid_276.edi",
+      "required_segments": [
+        "BHT",
+        "HL",
+        "NM1",
+        "TRN"
+      ],
+      "valid": true,
+      "segment_count": 10
+    },
+    {
+      "transaction_type": "277",
+      "workflow": "Claim-status response",
+      "fixture": "valid_277.edi",
+      "required_segments": [
+        "BHT",
+        "HL",
+        "NM1",
+        "TRN",
+        "STC"
+      ],
+      "valid": true,
+      "segment_count": 11
+    },
+    {
+      "transaction_type": "275",
+      "workflow": "Claim attachment",
+      "fixture": "valid_275.edi",
+      "required_segments": [
+        "BGN",
+        "NM1"
+      ],
+      "valid": true,
+      "segment_count": 8
+    }
+  ],
+  "invalid_files": [
+    {
+      "path": "tests/fixtures/invalid_837p_missing_clm.edi",
+      "file": "invalid_837p_missing_clm.edi",
+      "valid": false,
+      "transaction_type": "837P",
+      "segment_count": 10,
+      "error_count": 1,
+      "warning_count": 0,
+      "errors": [
+        "Missing required 837P segment CLM."
+      ],
+      "warnings": []
+    },
+    {
+      "path": "tests/fixtures/invalid_control_numbers.edi",
+      "file": "invalid_control_numbers.edi",
+      "valid": false,
+      "transaction_type": "837P",
+      "segment_count": 12,
+      "error_count": 4,
+      "warning_count": 0,
+      "errors": [
+        "ISA13 does not match IEA02 interchange control number.",
+        "GS06 does not match GE02 functional group control number.",
+        "ST02 does not match SE02 transaction set control number.",
+        "SE01 declares 7 segments, but ST-to-SE count is 8."
+      ],
+      "warnings": []
+    }
+  ],
+  "buyer_readout": [
+    "10 synthetic transaction families are covered by fixture-backed validation.",
+    "10 files pass; 2 intentionally fail so implementation errors are visible.",
+    "Control-number mismatches and missing required segments become clear action items before go-live."
+  ]
+}

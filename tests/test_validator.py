@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 
 from revcyclemgmt_edi_validation.cli import main
+from revcyclemgmt_edi_validation.proof_artifacts import run as proof_artifacts_run
 from revcyclemgmt_edi_validation.validator import validate_x12_file, validate_x12_text
 
 
@@ -74,3 +75,32 @@ def test_folder_summary_reports_validation_mix(capsys):
         "invalid_control_numbers.edi" in file_report["path"] and file_report["error_count"] >= 3
         for file_report in payload["files"]
     )
+
+
+def test_public_proof_artifacts_show_coverage_and_failures(tmp_path):
+    output_dir = tmp_path / "output_demo"
+
+    result = proof_artifacts_run(FIXTURES, output_dir)
+
+    assert result["file_count"] == len(list(FIXTURES.glob("*.edi")))
+    assert result["valid_count"] == result["file_count"] - 2
+    assert result["invalid_count"] == 2
+    assert result["transaction_family_count"] == 10
+    assert result["artifact_count"] == 2
+
+    report_path = output_dir / "edi_validation_report.json"
+    svg_path = output_dir / "edi_validation_coverage.svg"
+    assert report_path.exists()
+    assert svg_path.exists()
+
+    report = json.loads(report_path.read_text(encoding="utf-8"))
+    assert report["summary"]["transaction_counts"]["837P"] >= 2
+    assert any(item["transaction_type"] == "275" and item["valid"] for item in report["coverage"])
+    assert any(item["file"] == "invalid_control_numbers.edi" for item in report["invalid_files"])
+
+    svg = svg_path.read_text(encoding="utf-8")
+    assert "X12 files tested before the route goes live" in svg
+    assert "837P" in svg
+    assert "277CA" in svg
+    assert "invalid_control_numbers.edi" in svg
+    assert "without public PHI" in svg

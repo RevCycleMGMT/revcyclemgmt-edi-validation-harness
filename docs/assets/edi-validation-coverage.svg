@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="840" viewBox="0 0 1280 840" role="img" aria-labelledby="title desc">
+  <title id="title">RevCycleMGMT synthetic EDI validation coverage proof</title>
+  <desc id="desc">Synthetic X12 transaction coverage, validation flow, pass/fail summary, and actionable error report.</desc>
+  <defs>
+    <radialGradient id="tealGlow" cx="18%" cy="6%" r="68%">
+      <stop offset="0%" stop-color="#83f7f4" stop-opacity=".17"/>
+      <stop offset="58%" stop-color="#00B3A4" stop-opacity=".06"/>
+      <stop offset="100%" stop-color="#020607" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="panel" x1="0" x2="1">
+      <stop offset="0%" stop-color="#071012" stop-opacity=".98"/>
+      <stop offset="100%" stop-color="#0b1416" stop-opacity=".88"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <style>
+      .title { font: 900 42px Inter, Arial, sans-serif; fill: #f8fafc; }
+      .subtitle { font: 500 18px Inter, Arial, sans-serif; fill: #cbd5e1; }
+      .kicker { font: 900 12px Inter, Arial, sans-serif; fill: #83f7f4; letter-spacing: .12em; text-transform: uppercase; }
+      .metric { font: 900 30px Inter, Arial, sans-serif; fill: #ffffff; }
+      .node-number { font: 900 17px Inter, Arial, sans-serif; fill: #031719; }
+      .small { font: 700 15px Inter, Arial, sans-serif; fill: #d9fffd; }
+      .tiny { font: 600 12px Inter, Arial, sans-serif; fill: #cbd5e1; }
+      .muted { font: 600 11px Inter, Arial, sans-serif; fill: #94a3b8; }
+      .readout { font: 700 16px Inter, Arial, sans-serif; fill: #e2e8f0; }
+      .strong { font-weight: 900; fill: #f8fafc; }
+    </style>
+  </defs>
+  <rect width="1280" height="840" fill="#020607"/>
+  <rect width="1280" height="840" fill="url(#tealGlow)"/>
+  <path d="M0 764 C160 700 300 824 490 758 C690 692 840 812 1068 746 C1186 712 1230 720 1280 680 L1280 840 L0 840 Z" fill="#00B3A4" opacity=".06"/>
+  <rect x="28" y="28" width="1224" height="784" rx="18" fill="url(#panel)" stroke="#164e53"/>
+  <text x="56" y="78" class="kicker">Synthetic EDI Validation Proof</text>
+  <text x="56" y="124" class="title">X12 files tested before the route goes live.</text>
+  <text x="56" y="154" class="subtitle">Coverage for claims, remits, acknowledgments, eligibility, claim status, and attachments without public PHI.</text>
+  <g filter="url(#glow)">
+    <circle cx="1178" cy="84" r="7" fill="#83f7f4"/>
+    <circle cx="1204" cy="84" r="7" fill="#00B3A4"/>
+    <circle cx="1230" cy="84" r="7" fill="#facc15"/>
+  </g>
+  
+      <g>
+        <rect x="46" y="158" width="178" height="104" rx="10" fill="#081012" stroke="#164e53"/>
+        <text x="62" y="186" class="kicker">Files</text>
+        <text x="62" y="220" class="metric">12</text>
+        <text x="62" y="244" class="muted">synthetic fixtures</text>
+      </g>
+    
+
+      <g>
+        <rect x="242" y="158" width="178" height="104" rx="10" fill="#081012" stroke="#164e53"/>
+        <text x="258" y="186" class="kicker">Valid</text>
+        <text x="258" y="220" class="metric">10</text>
+        <text x="258" y="244" class="muted">ready examples</text>
+      </g>
+    
+
+      <g>
+        <rect x="438" y="158" width="178" height="104" rx="10" fill="#081012" stroke="#164e53"/>
+        <text x="454" y="186" class="kicker">Invalid</text>
+        <text x="454" y="220" class="metric">2</text>
+        <text x="454" y="244" class="muted">actionable failures</text>
+      </g>
+    
+
+      <g>
+        <rect x="634" y="158" width="178" height="104" rx="10" fill="#081012" stroke="#164e53"/>
+        <text x="650" y="186" class="kicker">Families</text>
+        <text x="650" y="220" class="metric">10</text>
+        <text x="650" y="244" class="muted">X12 workflows</text>
+      </g>
+    
+
+      <g>
+        <rect x="830" y="158" width="178" height="104" rx="10" fill="#081012" stroke="#164e53"/>
+        <text x="846" y="186" class="kicker">Errors</text>
+        <text x="846" y="220" class="metric">5</text>
+        <text x="846" y="244" class="muted">caught early</text>
+      </g>
+    
+
+      <g>
+        <rect x="1026" y="158" width="178" height="104" rx="10" fill="#081012" stroke="#164e53"/>
+        <text x="1042" y="186" class="kicker">Output</text>
+        <text x="1042" y="220" class="metric">JSON</text>
+        <text x="1042" y="244" class="muted">CI/dashboard ready</text>
+      </g>
+    
+  <rect x="46" y="292" width="1188" height="104" rx="14" fill="#061012" stroke="#164e53"/>
+  <text x="68" y="316" class="kicker">Validation Flow</text>
+  
+      <g>
+        <circle cx="98" cy="326" r="22" fill="#00B3A4"/>
+        <text x="98" y="332" class="node-number" text-anchor="middle">1</text>
+        <text x="98" y="374" class="tiny strong" text-anchor="middle">File intake</text>
+      </g>
+    <path d="M128 326 L248 326" stroke="#83f7f4" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+      <g>
+        <circle cx="278" cy="326" r="22" fill="#00B3A4"/>
+        <text x="278" y="332" class="node-number" text-anchor="middle">2</text>
+        <text x="278" y="374" class="tiny strong" text-anchor="middle">Parse X12</text>
+      </g>
+    <path d="M308 326 L428 326" stroke="#83f7f4" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+      <g>
+        <circle cx="458" cy="326" r="22" fill="#00B3A4"/>
+        <text x="458" y="332" class="node-number" text-anchor="middle">3</text>
+        <text x="458" y="374" class="tiny strong" text-anchor="middle">Detect ST01</text>
+      </g>
+    <path d="M488 326 L608 326" stroke="#83f7f4" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+      <g>
+        <circle cx="638" cy="326" r="22" fill="#00B3A4"/>
+        <text x="638" y="332" class="node-number" text-anchor="middle">4</text>
+        <text x="638" y="374" class="tiny strong" text-anchor="middle">Check envelope</text>
+      </g>
+    <path d="M668 326 L788 326" stroke="#83f7f4" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+      <g>
+        <circle cx="818" cy="326" r="22" fill="#00B3A4"/>
+        <text x="818" y="332" class="node-number" text-anchor="middle">5</text>
+        <text x="818" y="374" class="tiny strong" text-anchor="middle">Check rules</text>
+      </g>
+    <path d="M848 326 L968 326" stroke="#83f7f4" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+      <g>
+        <circle cx="998" cy="326" r="22" fill="#00B3A4"/>
+        <text x="998" y="332" class="node-number" text-anchor="middle">6</text>
+        <text x="998" y="374" class="tiny strong" text-anchor="middle">Control numbers</text>
+      </g>
+    <path d="M1028 326 L1148 326" stroke="#83f7f4" stroke-width="5" stroke-linecap="round" opacity=".72"/>
+      <g>
+        <circle cx="1178" cy="326" r="22" fill="#00B3A4"/>
+        <text x="1178" y="332" class="node-number" text-anchor="middle">7</text>
+        <text x="1178" y="374" class="tiny strong" text-anchor="middle">Action report</text>
+      </g>
+    
+  <rect x="46" y="410" width="1188" height="202" rx="14" fill="#061012" stroke="#164e53"/>
+  <text x="68" y="432" class="kicker">Transaction Coverage</text>
+  
+      <g>
+        <rect x="58" y="436" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="76" cy="458" r="7" fill="#83f7f4"/>
+        <text x="92" y="461" class="small strong">837P</text>
+        <text x="232" y="461" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="76" y="483" class="tiny">Professional claim</text>
+        <text x="76" y="500" class="muted">BHT, NM1, CLM, LX, SV1</text>
+      </g>
+    
+      <g>
+        <rect x="294" y="436" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="312" cy="458" r="7" fill="#83f7f4"/>
+        <text x="328" y="461" class="small strong">837I</text>
+        <text x="468" y="461" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="312" y="483" class="tiny">Institutional claim</text>
+        <text x="312" y="500" class="muted">BHT, NM1, CLM, LX, SV2</text>
+      </g>
+    
+      <g>
+        <rect x="530" y="436" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="548" cy="458" r="7" fill="#83f7f4"/>
+        <text x="564" y="461" class="small strong">835</text>
+        <text x="704" y="461" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="548" y="483" class="tiny">Electronic remittance</text>
+        <text x="548" y="500" class="muted">BPR, TRN, CLP</text>
+      </g>
+    
+      <g>
+        <rect x="766" y="436" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="784" cy="458" r="7" fill="#83f7f4"/>
+        <text x="800" y="461" class="small strong">999</text>
+        <text x="940" y="461" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="784" y="483" class="tiny">Implementation ACK</text>
+        <text x="784" y="500" class="muted">AK1, AK2, IK5, AK9</text>
+      </g>
+    
+      <g>
+        <rect x="1002" y="436" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="1020" cy="458" r="7" fill="#83f7f4"/>
+        <text x="1036" y="461" class="small strong">277CA</text>
+        <text x="1176" y="461" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="1020" y="483" class="tiny">Claim acknowledgment</text>
+        <text x="1020" y="500" class="muted">BHT, HL, TRN, STC</text>
+      </g>
+    
+      <g>
+        <rect x="58" y="524" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="76" cy="546" r="7" fill="#83f7f4"/>
+        <text x="92" y="549" class="small strong">270</text>
+        <text x="232" y="549" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="76" y="571" class="tiny">Eligibility request</text>
+        <text x="76" y="588" class="muted">BHT, HL, NM1, EQ</text>
+      </g>
+    
+      <g>
+        <rect x="294" y="524" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="312" cy="546" r="7" fill="#83f7f4"/>
+        <text x="328" y="549" class="small strong">271</text>
+        <text x="468" y="549" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="312" y="571" class="tiny">Eligibility response</text>
+        <text x="312" y="588" class="muted">BHT, HL, NM1, EB</text>
+      </g>
+    
+      <g>
+        <rect x="530" y="524" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="548" cy="546" r="7" fill="#83f7f4"/>
+        <text x="564" y="549" class="small strong">276</text>
+        <text x="704" y="549" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="548" y="571" class="tiny">Claim-status request</text>
+        <text x="548" y="588" class="muted">BHT, HL, NM1, TRN</text>
+      </g>
+    
+      <g>
+        <rect x="766" y="524" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="784" cy="546" r="7" fill="#83f7f4"/>
+        <text x="800" y="549" class="small strong">277</text>
+        <text x="940" y="549" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="784" y="571" class="tiny">Claim-status response</text>
+        <text x="784" y="588" class="muted">BHT, HL, NM1, TRN, STC</text>
+      </g>
+    
+      <g>
+        <rect x="1002" y="524" width="222" height="74" rx="10" fill="#081012" stroke="#173f43"/>
+        <circle cx="1020" cy="546" r="7" fill="#83f7f4"/>
+        <text x="1036" y="549" class="small strong">275</text>
+        <text x="1176" y="549" class="tiny strong" fill="#83f7f4">PASS</text>
+        <text x="1020" y="571" class="tiny">Claim attachment</text>
+        <text x="1020" y="588" class="muted">BGN, NM1</text>
+      </g>
+    
+  <rect x="46" y="626" width="1188" height="124" rx="14" fill="#061012" stroke="#164e53"/>
+  <text x="68" y="650" class="kicker">Actionable Failure Examples</text>
+  
+      <g>
+        <rect x="58" y="642" width="1164" height="44" rx="9" fill="#081012" stroke="#173f43"/>
+        <circle cx="84" cy="664" r="7" fill="#f97316"/>
+        <text x="106" y="661" class="small strong">invalid_837p_missing_clm.edi</text>
+        <text x="106" y="678" class="tiny">837P | 1 error(s)</text>
+        <text x="404" y="669" class="small">Missing required 837P segment CLM.</text>
+      </g>
+    
+
+      <g>
+        <rect x="58" y="694" width="1164" height="44" rx="9" fill="#081012" stroke="#173f43"/>
+        <circle cx="84" cy="716" r="7" fill="#f97316"/>
+        <text x="106" y="713" class="small strong">invalid_control_numbers.edi</text>
+        <text x="106" y="730" class="tiny">837P | 4 error(s)</text>
+        <text x="404" y="721" class="small">ISA13 does not match IEA02 interchange control number.</text>
+      </g>
+    
+  <rect x="46" y="754" width="1188" height="58" rx="14" fill="#071012" stroke="#164e53"/>
+  <text x="58" y="766" class="readout">10 synthetic transaction families are covered by fixture-backed validation.</text><text x="58" y="784" class="readout">10 files pass; 2 intentionally fail so implementation errors are visible.</text>
+</svg>

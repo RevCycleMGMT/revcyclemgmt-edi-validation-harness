@@ -12,6 +12,8 @@ This repository is a public RevCycleMGMT proof asset. It shows how startup pract
 
 No PHI. No production payer files. No clearinghouse credentials. No client data.
 
+![RevCycleMGMT synthetic EDI validation coverage proof](docs/assets/edi-validation-coverage.svg)
+
 ---
 
 ## Executive View
@@ -25,6 +27,24 @@ RevCycleMGMT does not treat X12 files like random text exports. This harness pro
 5. A folder-level summary shows what is ready, what failed, and which workflows need attention.
 
 That is the implementation pattern a clinic needs before claims, eligibility, remits, attachments, and payer responses become part of an operating dashboard.
+
+## Visual Proof Artifact
+
+The README visual above is generated from the synthetic fixture folder. It is not a static screenshot. It shows the implementation checkpoint RevCycleMGMT would use before a route is trusted:
+
+| Visual lane | What it proves |
+| --- | --- |
+| KPI cards | File count, pass/fail mix, transaction-family coverage, caught errors, and JSON output readiness. |
+| Validation flow | File intake, parsing, ST01 detection, envelope checks, transaction rules, control numbers, and action reporting. |
+| Transaction coverage | Ten synthetic X12 workflow families are fixture-backed and pass validation. |
+| Failure examples | The repo intentionally includes missing-segment and control-number failures so buyers can see actionable reporting. |
+
+Regenerate it locally:
+
+```bash
+python -m revcyclemgmt_edi_validation.proof_artifacts --fixtures tests/fixtures --out output_demo
+cp output_demo/edi_validation_coverage.svg docs/assets/edi-validation-coverage.svg
+```
 
 ## Tool Strip
 
@@ -84,6 +104,7 @@ source .venv/bin/activate
 pip install -e . pytest
 pytest -q
 python -m revcyclemgmt_edi_validation validate tests/fixtures/valid_837p.edi
+python -m revcyclemgmt_edi_validation.proof_artifacts --fixtures tests/fixtures --out output_demo
 ```
 
 Windows PowerShell activation:
@@ -151,6 +172,14 @@ Example summary shape:
 }
 ```
 
+## Generated Artifacts
+
+| Artifact | Purpose |
+| --- | --- |
+| `output_demo/edi_validation_report.json` | Buyer-readable validation proof model with summary metrics, transaction coverage, invalid files, and plain readout text. |
+| `output_demo/edi_validation_coverage.svg` | Generated native SVG coverage and pass/fail proof artifact. |
+| `docs/assets/edi-validation-coverage.svg` | README-facing copy of the generated SVG. |
+
 ## Clearinghouse And API Readiness
 
 This repository does not claim a live clearinghouse integration, payer certification, or official vendor relationship. It demonstrates the validation layer that should exist before connecting to an API-enabled clearinghouse route.
@@ -165,15 +194,20 @@ Correct public wording:
 src/revcyclemgmt_edi_validation/
   cli.py              command-line interface
   parser.py           X12 segment parser
+  proof_artifacts.py  generated JSON and SVG proof reports
   rules.py            transaction required-segment rules
   validator.py        validation engine
 tests/
   fixtures/           synthetic X12 examples
   test_validator.py   parser, validation, and CLI summary tests
 docs/
+  assets/edi-validation-coverage.svg
   website-card-copy.md
   implementation-notes.md
   optum-api-positioning.md
+output_demo/
+  edi_validation_report.json
+  edi_validation_coverage.svg
 ```
 
 ## Public Safety Boundary
